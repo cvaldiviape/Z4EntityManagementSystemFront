@@ -1,0 +1,56 @@
+<h1 [ngClass]="['title']">Sistema de Gestión Whatsapp</h1>
+<h1 [ngClass]="['subtitle','md:subtitle']">Bienvenido</h1>
+
+<form
+  [formGroup]="formReactive"
+  (ngSubmit)="onSubmit(formReactive.value)"
+>
+
+  <mat-form-field appearance="legacy" [ngClass]="['input']">
+    <mat-label>Usuario</mat-label>
+    <input 
+      matInput placeholder="Ingrese usuario" 
+      id="usernameOrEmail"
+      formControlName="usernameOrEmail"
+      maxlength="50" 
+    />
+    <mat-icon matSuffix>assignment_ind</mat-icon>
+    <mat-error *ngIf="formReactive.controls['usernameOrEmail'].hasError('required') && formReactive.controls['usernameOrEmail'].touched">
+      El 'username' es requerido.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy" [ngClass]="['input']">
+    <mat-label>Contraseña</mat-label>
+    <input 
+      matInput placeholder="Ingrese contraseña" 
+      [type]="hide ? 'password' : 'text'" 
+      id="password"
+      formControlName="password"
+      maxlength="50" 
+    />
+    <button
+      mat-icon-button
+      matSuffix
+      type="button"
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
+    >
+      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+    <mat-error *ngIf="formReactive.controls['password'].hasError('required') && formReactive.controls['password'].touched">
+      La 'contraseña' es requerida.
+    </mat-error>
+  </mat-form-field>
+
+  <qrcode *ngIf="qrCode" [qrdata]="qrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+  <app-loading-button 
+    [text]="'Iniciar sesión'" 
+    [type]="'submit'"
+    [loading]="loading"
+    [disabled]="!formReactive.valid"
+  >
+  </app-loading-button>
+ 
+</form>

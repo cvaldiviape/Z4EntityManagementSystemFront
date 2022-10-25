@@ -1,0 +1,50 @@
+<div [ngClass]="['card']">
+  <!-- ------------------------------------------------ FORM ------------------------------------------------ -->
+  <form
+   [ngClass]="['form']"
+   [formGroup]="formReactive"
+   (ngSubmit)="onSubmit(formReactive.value)"
+  > 
+    <mat-radio-group [ngClass]="['box-radio-buttons', 'row', 'col-12']">
+      <mat-radio-button (change)="selectRadioButton($event)" value="customers" [ngClass]="['radio-button','col-6','sm:col-3']" checked>Agregar por contacto</mat-radio-button>
+      <mat-radio-button (change)="selectRadioButton($event)" value="groups" [ngClass]="['radio-button','col-6','sm:col-3']">Agregar por grupo</mat-radio-button>
+    </mat-radio-group> 
+
+    <div [ngClass]="['row','col-12']">
+      <app-chip  
+        [ngClass]="['col-12']"
+        [id]="'destinations'"
+        [placeholder]="placeholderDestinations"
+        [type]="'text'"
+        [maxlength]="25"
+        [listItems]="listDestinations"
+        [itemsForFiltering]="itemsForFiltering"
+        [regex]="regexDestinatios"
+        [isRequired]="true">
+      </app-chip>
+    </div>  
+    
+    <div [ngClass]="['row','col-12']">
+      <app-textarea
+        [ngClass]="['text-area','col-12']"
+        [id]="'message'"
+        [control]="$any(formReactive.get('message'))"
+        [placeholder]="'Mensaje *'"
+        [type]="'text'"
+        [rows]="14">
+      </app-textarea>
+    </div>
+   
+    <div [ngClass]="['box-buttons','row','col-12']">
+      <button 
+        mat-raised-button 
+        color="btn-submit" 
+        [ngClass]="['col-12','md:col-3','lg:col-3']"
+        [disabled]="!formReactive.valid || (listDestinations.length <= 0)"
+        [type]="'submit'">
+        Enviar mensaje
+      </button>
+    </div>
+
+  </form>
+</div>
