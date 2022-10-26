@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener  } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { JwtService } from 'src/app/security/services/jwt.service';
 import { Item } from '../../../../models/others/item';
 
 @Component({
@@ -18,6 +19,7 @@ export class AdminLayoutComponent implements OnInit {
   constructor(
     private _activedRoute: ActivatedRoute,
     private _router: Router,
+    private _jwtService: JwtService
   ) {
     this.openSidebar = false;
     this.isMobileSize = true;
@@ -26,33 +28,28 @@ export class AdminLayoutComponent implements OnInit {
     this.appName = 'Company';
     this.items = [
       {
-        title: 'Home',
-        iconPrimary: 'home',
+        title: 'Entidades',
+        iconPrimary: 'business',
         iconSecondary: 'chevron_right',
-        path: 'home',
+        path: 'entity',
       },
       {
-        title: 'Contactos',
-        iconPrimary: 'contact_mail',
+        title: 'Tipo Contribuyentes',
+        iconPrimary: 'card_travel',
         iconSecondary: 'chevron_right',
-        path: 'contact',
+        path: 'type-contributor',
       },
       {
-        title: 'Enviados',
-        iconPrimary: 'send',
+        title: 'Tipo Documentos',
+        iconPrimary: 'contact_page',
         iconSecondary: 'chevron_right',
-        path: 'sending',
-      },
-      {
-        title: 'Recibidos',
-        iconPrimary: 'mark_as_unread',
-        iconSecondary: 'chevron_right',
-        path: 'received',
+        path: 'type-document',
       },
     ];
   }
 
   ngOnInit(): void {
+    this.username = this._jwtService.getUsername().toUpperCase();
     this.questionSizeDisplay();
   }
 

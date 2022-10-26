@@ -11,6 +11,8 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
+  public title: String;
+  public subtitle: String;
   public hide: boolean; /* password */
   public loading: boolean;
   public formReactive: FormGroup;
@@ -22,29 +24,30 @@ export class SignInComponent implements OnInit {
     private _authService: AuthService,
     private _jwtService: JwtService,
   ) { 
+    this.title = 'Sistema de Gestión de Entidades';
+    this.subtitle = 'Bienvenido:';
     this.hide = true;
     this.loading = false;
     this.formReactive = this._formBuilder.group({
-      username	: [""],
-      password : [""],
+      username	      : ["", [Validators.required]],
+      password	      : ["", [Validators.required]],
     });
   }
 
-  ngOnInit(): void {
-   
-  }
+  ngOnInit(): void {}
 
   onSubmit(authRequestDTO: AuthRequestDTO): void {
     this.loading = true;
     authRequestDTO.roleId = 1;
-    console.log(authRequestDTO);
     this._authService.requestLogin(authRequestDTO).subscribe({
       next: (res) => {
-        console.log(res);
+        this.loading = false;
         this._jwtService.authJWT(res.data);
         this._router.navigateByUrl('/admin');
+      },
+      error: (err) => {
         this.loading = false;
-      }
+      },
     });
   }
 

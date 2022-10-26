@@ -1,5 +1,5 @@
-<h1 [ngClass]="['title']">Sistema de Gestión de Entidades</h1>
-<h1 [ngClass]="['subtitle','md:subtitle']">Bienvenido</h1>
+<h1 [ngClass]="['title']">{{title}}</h1>
+<h1 [ngClass]="['subtitle','md:subtitle']">{{subtitle}}</h1>
 
 <form
   [formGroup]="formReactive"
@@ -10,13 +10,13 @@
     <mat-label>Usuario</mat-label>
     <input 
       matInput placeholder="Ingrese usuario" 
-      id="usernameOrEmail"
-      formControlName="usernameOrEmail"
+      id="username"
+      formControlName="username"
       maxlength="50" 
     />
     <mat-icon matSuffix>assignment_ind</mat-icon>
-    <mat-error *ngIf="formReactive.controls['usernameOrEmail'].hasError('required') && formReactive.controls['usernameOrEmail'].touched">
-      El 'username' es requerido.
+    <mat-error *ngIf="formReactive.controls['username'].hasError('required') && formReactive.controls['username'].touched">
+      El 'usuario' es requerido.
     </mat-error>
   </mat-form-field>
 
@@ -44,9 +44,33 @@
     </mat-error>
   </mat-form-field>
 
+  <mat-form-field appearance="legacy" [ngClass]="['input']">
+    <mat-label>Confirmar contraseña</mat-label>
+    <input 
+      matInput placeholder="Confirmar contraseña" 
+      [type]="hide ? 'password' : 'text'" 
+      id="repeatPassword"
+      formControlName="repeatPassword"
+      maxlength="50" 
+    />
+    <button
+      mat-icon-button
+      matSuffix
+      type="button"
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
+    >
+      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+    <mat-error *ngIf="formReactive.controls['repeatPassword'].hasError('required') && formReactive.controls['repeatPassword'].touched">
+      Confirmacioón de contraseña es requerida.
+    </mat-error>
+  </mat-form-field>
+
   <div [ngClass]="['mb']">
     <app-btn-custom-a 
-      [text]="'Iniciar sesión'" 
+      [text]="'Registrar'" 
       [type]="'submit'"
       [loading]="loading"
       [disabled]="!formReactive.valid"
@@ -56,9 +80,9 @@
   
   <div>
     <app-btn-custom-b 
-      [text]="'Crear cuenta'" 
+      [text]="'Volver'" 
       [type]="'button'"
-      (click)="goRegister()"
+      (click)="goBack()"
     >
     </app-btn-custom-b>
   </div>

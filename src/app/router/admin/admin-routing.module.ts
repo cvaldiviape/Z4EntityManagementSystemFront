@@ -12,24 +12,20 @@ const routes: Routes = [
     canActivateChild: [AdminChildGuard],
     children: [
       {
-        path: 'home',
-        loadChildren: () => import('../../modules/home/home.module').then(x => x.HomeModule),
-      },
-      {
-        path: 'contact',
+        path: 'entity',
         loadChildren: () => import('../../modules/contact/contact.module').then(x => x.ContactModule),
       },
       {
-        path: 'sending',
+        path: 'type-contributor',
         loadChildren: () => import('../../modules/sending/sending.module').then(x => x.SendingModule),
       },
       {
-        path: 'received',
+        path: 'type-document',
         loadChildren: () => import('../../modules/received/received.module').then(x => x.ReceivedModule),
       },
       {
         path: '**',
-        redirectTo: 'home'
+        redirectTo: 'entity'
       }
     ]
   },

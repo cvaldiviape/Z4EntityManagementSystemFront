@@ -26,4 +26,15 @@ export class JwtService {
     localStorage.removeItem(LocalStorageJwt.TOKEN_EXPIRED_IN);
   }
 
+  isAuth(): boolean {
+		const role = localStorage.getItem(LocalStorageJwt.TOKEN_ACCESS) || '';
+		return (role) ? true : false;
+	}
+
+  getUsername(): string{
+    return localStorage.getItem(LocalStorageJwt.USERNAME) || '';
+  }
+
+  
+
 }

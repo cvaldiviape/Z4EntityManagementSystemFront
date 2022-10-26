@@ -56,12 +56,12 @@ export class ContactListComponent implements OnInit, AfterViewInit {
    }
 
   ngOnInit(): void {
-    this._contactService.requestGetAll().subscribe({
-      next: (res) => {
-        console.log(res);
-        // this.contacts = res.data;   
-      }
-    });
+    // this._contactService.requestGetAll().subscribe({
+    //   next: (res) => {
+    //     console.log(res);
+    //     // this.contacts = res.data;   
+    //   }
+    // });
   }
 
   ngAfterViewInit(): void {

@@ -41,7 +41,7 @@ export class SnackBarService {
 		type: number,
 		duration?: number
 	) {
-		if (!duration) duration = 3000;
+		if (!duration) duration = 10000;
 
 		const positionSnack = this.getPosition(position);
 

@@ -1,5 +1,5 @@
-<h1 [ngClass]="['title']">Sistema de Gestión de Entidades</h1>
-<h1 [ngClass]="['subtitle','md:subtitle']">Bienvenido</h1>
+<h1 [ngClass]="['title']">{{title}}</h1>
+<h1 [ngClass]="['subtitle','md:subtitle']">{{subtitle}}</h1>
 
 <form
   [formGroup]="formReactive"
@@ -16,7 +16,7 @@
     />
     <mat-icon matSuffix>assignment_ind</mat-icon>
     <mat-error *ngIf="formReactive.controls['username'].hasError('required') && formReactive.controls['username'].touched">
-      El 'username' es requerido.
+      El 'usuario' es requerido.
     </mat-error>
   </mat-form-field>
 

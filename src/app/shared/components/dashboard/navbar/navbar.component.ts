@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtService } from '../../../../security/services/jwt.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,6 +13,7 @@ export class NavbarComponent implements OnInit {
   @Output() openSidebarOutPut = new EventEmitter<boolean>();
 
   constructor(
+    private _jwtService: JwtService,
     private _router: Router,
   ) { 
     this.isMobileSize = true;
@@ -32,6 +34,7 @@ export class NavbarComponent implements OnInit {
   }
 
   closeSession(): void {
+    this._jwtService.logout();
     this._router.navigateByUrl('/auth');
   }
 

@@ -15,12 +15,17 @@
 	border-radius: 5px;
 	position: relative;
 	overflow: hidden;
-	/* font-weight: 600; */
+	cursor:default;
 }
 
-.button:hover {
-	background: #f5af23 ; /*#43eb61*/
+button:hover:enabled{
+	background: #f5af23;
+	cursor: pointer
 }
+
+/* button:active:enabled{
+	
+} */
 
 .button span {
 	position: relative;
@@ -38,6 +43,12 @@
 	border-bottom: 80px solid #fccb69;
 	border-right: 80px solid transparent;
 	transition: .4s ease-in-out all;
+}
+
+button:disabled,
+button[disabled]{
+  background-color: #cccccc;
+  color: #666666;
 }
 
 .button.fx:hover::after {

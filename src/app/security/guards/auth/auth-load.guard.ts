@@ -6,7 +6,7 @@ import { JwtService } from '../../services/jwt.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminLoadGuard implements CanLoad {
+export class AuthLoadGuard implements CanLoad {
 
   constructor(
     private _jwtService: JwtService,
@@ -17,12 +17,13 @@ export class AdminLoadGuard implements CanLoad {
     route: Route,
     segments: UrlSegment[]
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    
-    const isLoggedIn = this._jwtService.isAuth();
-    if(!isLoggedIn){
-      void this._router.navigateByUrl('/auth');
-    }
-    return isLoggedIn;
+      const isLoggedIn = this._jwtService.isAuth();
+      console.log(isLoggedIn);
+      if(isLoggedIn){
+        void this._router.navigateByUrl('/admin');
+        return false;
+      }
+      return true;
   }
 
 }
