@@ -4,14 +4,14 @@
   padding: 0rem 0.4375rem;
   align-items: center;
   justify-content: space-between;
-  background-color: #43eb61;
+  background-color: #26bdc4;
   background-position: 50% 40%;
 }
 
 .navbar-button{
   width: 100%;
   height: 100%;
-  color: #43eb61;
+  color: #26bdc4;
 }
 
 .btn-opensidebar {

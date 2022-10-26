@@ -1,8 +1,7 @@
-import { SocketService } from './../../../../shared/services/socket.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { JwtService } from 'src/app/security/services/jwt.service';
 import { AuthRequestDTO } from '../../../../models/request/auth-request-dto';
 import { AuthService } from '../../services/auth.service';
 
@@ -21,37 +20,36 @@ export class SignInComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _router: Router,
     private _authService: AuthService,
-    private _socketService : SocketService
+    private _jwtService: JwtService,
   ) { 
     this.hide = true;
     this.loading = false;
     this.formReactive = this._formBuilder.group({
-      usernameOrEmail	: [""],
+      username	: [""],
       password : [""],
     });
   }
 
   ngOnInit(): void {
-    this.onQRStart();
+   
   }
 
   onSubmit(authRequestDTO: AuthRequestDTO): void {
     this.loading = true;
-    this._authService.requestLogin().subscribe({
+    authRequestDTO.roleId = 1;
+    console.log(authRequestDTO);
+    this._authService.requestLogin(authRequestDTO).subscribe({
       next: (res) => {
         console.log(res);
+        this._jwtService.authJWT(res.data);
         this._router.navigateByUrl('/admin');
         this.loading = false;
       }
     });
-    this._router.navigateByUrl('/admin');
   }
 
-  onQRStart(): void {
-    this._socketService.onFetchQr().subscribe((data: any) => {
-      this.qrCode = data;
-      console.log('qrCode',this.qrCode)
-    });
-
+  goRegister(): void {
+    this._router.navigateByUrl('/auth/register');
   }
+
 }

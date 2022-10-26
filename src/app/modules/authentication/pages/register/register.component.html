@@ -10,12 +10,12 @@
     <mat-label>Usuario</mat-label>
     <input 
       matInput placeholder="Ingrese usuario" 
-      id="username"
-      formControlName="username"
+      id="usernameOrEmail"
+      formControlName="usernameOrEmail"
       maxlength="50" 
     />
     <mat-icon matSuffix>assignment_ind</mat-icon>
-    <mat-error *ngIf="formReactive.controls['username'].hasError('required') && formReactive.controls['username'].touched">
+    <mat-error *ngIf="formReactive.controls['usernameOrEmail'].hasError('required') && formReactive.controls['usernameOrEmail'].touched">
       El 'username' es requerido.
     </mat-error>
   </mat-form-field>

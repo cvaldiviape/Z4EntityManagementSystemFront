@@ -1,5 +1,9 @@
+import { RoleResponseDTO } from "./role-response-dto";
+import { TokenResponseDTO } from "./token-response-dto";
+import { UserAuthResponseDTO } from "./user-auth-response-dto";
+
 export interface AuthResponseDTO{ 
-  messages: any,
-  isValid: boolean,
-  data: any,
+  user: UserAuthResponseDTO,
+  role: RoleResponseDTO,
+  token: TokenResponseDTO,
 }

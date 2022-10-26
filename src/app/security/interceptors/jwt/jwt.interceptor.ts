@@ -17,42 +17,27 @@ export class JwtInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     // HERE CALL LOCALSTORAGE
-    // let requestClone = request;
-    // if(!this.isUrlLogin(request.url)){ 
-    //                                   
-    //   requestClone = request.clone({ 
-    //     headers: request.headers
-    //       .set('Authorization', `${this.token.tokenType} ${this.token.tokenAccess}`)
-    //       .set('Content-Type', 'application/json')
-    //   }); 
-    // }else{
-    //   requestClone = request.clone({
-    //     headers: request.headers
-    //       .set('Content-Type', 'application/json')
-    //   }); 
-    // }
-    
+    const tokenAccess = localStorage.getItem("token_access") || '';
+    const tokenType = localStorage.getItem("token_type") || '';
+   
     let requestClone = request;
-    if(!this.isUrlCreateContactsByFiles(request.url)){
+    if(!this.isUrlAuth(request.url)){
       requestClone = request.clone({
         headers: request.headers
+          .set('Authorization', `${tokenType} ${tokenAccess}`)
           .set('Content-Type', 'application/json')
       }); 
     }else{
       requestClone = request.clone({
         headers: request.headers
-          .set('Content-Type', 'multipart/form-data')
+          .set('Content-Type', 'application/json')
       }); 
     }
     return next.handle(requestClone);
   }
 
-  isUrlLogin(url: string): boolean {
-    return (url.search(PathAuthentication.AUTH) != -1);
-  }
-
-  isUrlCreateContactsByFiles(url: string): boolean {
-    return (url.search(PathContact.GET_GROUPS) != -1);
+  isUrlAuth(url: string): boolean {
+    return (url.search(PathAuthentication.ROOT) != -1);
   }
 
 }

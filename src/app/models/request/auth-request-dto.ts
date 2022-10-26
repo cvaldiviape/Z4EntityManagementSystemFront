@@ -1,5 +1,5 @@
 export interface AuthRequestDTO {
-  usernameOrEmail: string,
+  username: string,
   password: string,
   roleId: number,
 }

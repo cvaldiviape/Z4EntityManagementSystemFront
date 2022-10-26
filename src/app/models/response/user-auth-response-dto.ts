@@ -1,5 +1,4 @@
 export interface UserAuthResponseDTO{
-  usernameOrEmail: string,
-  password: string,
-  roleId: number,
+  id: number,
+  username: string,
 }

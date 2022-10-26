@@ -4,7 +4,7 @@
 	justify-content: center;
 	width: 100%;
 	height: 40px;
-	background: #343235 ; /*#43eb61*/
+	background: #FEB92D ; /*#43eb61*/
 	color: #fff;
 	font-family: 'Roboto', sans-serif;
 	font-size: 1.05rem;
@@ -15,10 +15,11 @@
 	border-radius: 5px;
 	position: relative;
 	overflow: hidden;
+	/* font-weight: 600; */
 }
 
 .button:hover {
-	background: #191919 ; /*#43eb61*/
+	background: #f5af23 ; /*#43eb61*/
 }
 
 .button span {
@@ -34,7 +35,7 @@
 	z-index: 1;
 	top: 0;
 	left: calc(-100% - 80px);
-	border-bottom: 80px solid #000;
+	border-bottom: 80px solid #fccb69;
 	border-right: 80px solid transparent;
 	transition: .4s ease-in-out all;
 }
@@ -44,8 +45,8 @@
 }
 
 .effect-active:active:not([disabled]) {
-	outline: 3px solid #281c20 ;
-  box-shadow: 0 0 20px #281c20 ;
+	outline: 3px solid #fccb69 ;
+  box-shadow: 0 0 20px #fccb69 ;
 }
 
 .icon {

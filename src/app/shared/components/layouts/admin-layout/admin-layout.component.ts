@@ -23,7 +23,7 @@ export class AdminLayoutComponent implements OnInit {
     this.isMobileSize = true;
     this.openSubMenu = false;
     this.username = 'Usuario anónimo';
-    this.appName = 'WhatsApp';
+    this.appName = 'Company';
     this.items = [
       {
         title: 'Home',

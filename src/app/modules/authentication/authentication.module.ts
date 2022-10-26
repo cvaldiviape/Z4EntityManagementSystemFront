@@ -11,10 +11,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { QRCodeModule } from 'angularx-qrcode';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
     SignInComponent,
+    RegisterComponent,
   ],
   imports: [
     CommonModule,

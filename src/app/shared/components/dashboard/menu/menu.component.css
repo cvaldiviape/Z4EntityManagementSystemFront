@@ -6,13 +6,9 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(100% - 9rem); /* 4.5rem (LOGO MANGA GOD), 4.5rem (ACCOUNT USER)*/
+  height: calc(100% - 9rem); /* 4.5rem (LOGO), 4.5rem (ACCOUNT USER)*/
   font-size: 1rem;
 }
-
-/* .menu-open { cuando sepa que el sidebar contendra muchos items, entonces sera necesario agregar el scrollbar.
-  overflow-y: scroll;
-} */
 
 .item {
   display: flex;
@@ -25,13 +21,11 @@
 }
 
 .item:hover{
-  /* background-image: linear-gradient(rgba(4, 24, 129, 0.765),rgba(0, 0, 0, 0.281)); */
-  background-image: linear-gradient(rgba(4, 129, 6, 0.765),rgba(0, 0, 0, 0.281));
+  background-image: linear-gradient(rgba(78, 78, 78, 0.765),rgba(0, 0, 0, 0.281));
 }
 
 .item-active{
-  /* background-image: linear-gradient(rgba(4, 24, 129, 0.765),rgba(0, 0, 0, 0.281)); */
-  background-image: linear-gradient(rgba(4, 129, 6, 0.765),rgba(0, 0, 0, 0.281));
+  background-image: linear-gradient(rgba(78, 78, 78, 0.765),rgba(0, 0, 0, 0.281));
 }
 
 .item .img {
