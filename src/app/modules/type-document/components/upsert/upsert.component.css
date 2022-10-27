@@ -1,0 +1,33 @@
+@media screen and (min-width: 48em) { 
+  .md\:input-code {
+    padding-right: 0.4rem;
+  }
+}
+
+@media screen and (min-width: 48em) { 
+  .md\:input-name {
+    padding-left: 0.4rem;
+  }
+}
+
+@media screen and (min-width: 62em) { 
+  .lg\:buttons {
+    justify-content: end;
+  }
+}
+
+@media screen and (min-width: 48em) { 
+  .md\:btn-register {
+    padding-right: 0.2rem;
+  }
+}
+
+@media screen and (min-width: 48em) { 
+  .md\:btn-back {
+    padding-left: 0.2rem;
+  }
+}
+
+.mb{
+  margin-bottom: 0.4rem;
+}

@@ -12,14 +12,14 @@
   border: 2.5px solid rgba(0, 0, 0, 0);
   background-clip: padding-box;
   border-radius: 9999px;
-  background-color: #006c0d;
+  background-color: #565656;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #13e929;
+  background: #353535;
 }
 ::-webkit-scrollbar-thumb:active {
-  background: #00a329;
+  background: #232323;
 }
 
 ::-webkit-scrollbar-track {

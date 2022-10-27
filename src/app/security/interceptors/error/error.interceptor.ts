@@ -28,50 +28,25 @@ export class ErrorInterceptor implements HttpInterceptor {
   }
 
   errorHandler(err: HttpErrorResponse){
-    // if(err instanceof HttpErrorResponse){
-
-    //   if(err.error instanceof ErrorEvent){
-       
-    //   } else {
-    //     if(err.status===401){
-    //       this._snackBar.showError(MessagesBackend.BAD_CREDENTIALS, 'top right');
-    //     }else{
-    //       this._snackBar.showError('Error server', 'top right');
-    //     }
-    //   }
-
-    // } else {
-    //   this._snackBar.showError('Error unknown', 'top right');
-    // }
-
-    if(err instanceof HttpErrorResponse && err instanceof ErrorEvent){
-      this._snackBar.showError('Error client', 'top right');
-    } else if(err instanceof HttpErrorResponse && (err?.status >=400 || err?.status<=499)){
-      this.showSnackbarByStatus(err?.status);
-    }else{
-      this._snackBar.showError('Error unknown', 'top right');
+    if(err?.status){
+      this.showSnackbarByStatus(err);
     }
-
-    this._router.navigateByUrl('/auth/sign-in');
     return throwError(() => err);
   }
 
-  showSnackbarByStatus(status: number): void{
-    switch(status){
+  showSnackbarByStatus(err: HttpErrorResponse): void{
+    switch(err.status){
       case 400:
-        this._snackBar.showError(MessagesBackend.BAD_REQUEST, 'top right');
+        if(err.error?.message) this._snackBar.showError(err.error.message, 'bottom center');
         break;
       case 401:
         this._snackBar.showError(MessagesBackend.UNAUTHORIZED, 'top right');
-        break;
-      case 404:
-        this._snackBar.showError(MessagesBackend.NOT_FOUND, 'top right');
+        this._router.navigateByUrl('/auth/sign-in');
         break;
       default:
         this._snackBar.showError(MessagesBackend.UNKNOWN_ERROR, 'top right');
         break;
     }
   }
-
-  
+ 
 }

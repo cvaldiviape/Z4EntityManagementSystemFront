@@ -1,27 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminLayoutComponent } from '../../shared/components/layouts/admin-layout/admin-layout.component';
-import { AdminGuard } from '../../security/guards/admin/admin.guard';
-import { AdminChildGuard } from '../../security/guards/admin/admin-child.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminLayoutComponent,
-    canActivate: [AdminGuard], 
-    canActivateChild: [AdminChildGuard],
     children: [
       {
         path: 'entity',
-        loadChildren: () => import('../../modules/contact/contact.module').then(x => x.ContactModule),
+        loadChildren: () => import('../../modules/entity/entity.module').then(x => x.EntityModule),
       },
       {
         path: 'type-contributor',
-        loadChildren: () => import('../../modules/sending/sending.module').then(x => x.SendingModule),
+        loadChildren: () => import('../../modules/type-contributor/type-contributor.module').then(x => x.TypeContributorModule),
       },
       {
         path: 'type-document',
-        loadChildren: () => import('../../modules/received/received.module').then(x => x.ReceivedModule),
+        loadChildren: () => import('../../modules/type-document/type-document.module').then(x => x.TypeDocumentModule),
       },
       {
         path: '**',

@@ -14,9 +14,11 @@ export class TextareaComponent implements OnInit {
   @Input() required: boolean = false;
   @Input() readonly: boolean = false;
   @Input() rows: number = 5;
+  @Input() messageErrorRequired: string = 'El campo text area es obligatorio.';
+  @Input() messageErrorPattern: string = 'El campo text area es inválido.';
 
   constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
 }

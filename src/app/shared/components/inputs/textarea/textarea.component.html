@@ -11,7 +11,10 @@
     >
   </textarea>
   <mat-error *ngIf="control.hasError('required') && control.touched">
-		Este campo es obligatorio
+		{{messageErrorRequired}}
+	</mat-error>
+  <mat-error *ngIf="control.hasError('pattern') && control.touched">
+		{{messageErrorPattern}}
 	</mat-error>
 </mat-form-field>
 

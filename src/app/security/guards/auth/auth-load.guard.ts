@@ -18,7 +18,7 @@ export class AuthLoadGuard implements CanLoad {
     segments: UrlSegment[]
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       const isLoggedIn = this._jwtService.isAuth();
-      console.log(isLoggedIn);
+      console.log('AuthLoadGuard');
       if(isLoggedIn){
         void this._router.navigateByUrl('/admin');
         return false;
