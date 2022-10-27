@@ -14,6 +14,7 @@ import { TypeDocumentService } from '../../services/type-document.service';
 })
 
 export class TypeDocumentListComponent implements OnInit {
+  public title: string;
   public displayedColumns: string[];
   public dataSource!: MatTableDataSource<TypeDocumentResponseDTO>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -24,6 +25,7 @@ export class TypeDocumentListComponent implements OnInit {
     private _typeDocumentService: TypeDocumentService,
     private _dialogService: DialogService
   ) {
+    this.title = "Tipos de Documentos";
     this.displayedColumns = ['id','code','name','description','actions'];
     this.getAllItems();
   }
@@ -62,16 +64,16 @@ export class TypeDocumentListComponent implements OnInit {
       confirmText: 'Si',
       cancelText: 'No',
     })
-    .subscribe((yes) => {
-      if (yes){
-        this._typeDocumentService.requestDelete(id).subscribe({
-          next: (res) => {
-            if(res.success){
-              this.getAllItems();
-              this._snackBarService.showInfo(res.message, 'top right', 5000);
-            }
-          }
-        });
+    .subscribe((yes) => { if (yes) this.delete(id)});
+  }
+
+  delete(id: number): void {
+    this._typeDocumentService.requestDelete(id).subscribe({
+      next: (res) => {
+        if(res.success){
+          this.getAllItems();
+          this._snackBarService.showInfo(res.message, 'top right', 5000);
+        }
       }
     });
   }

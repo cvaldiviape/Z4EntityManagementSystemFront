@@ -38,7 +38,6 @@ export class SignInComponent implements OnInit {
 
   onSubmit(authRequestDTO: AuthRequestDTO): void {
     this.loading = true;
-    authRequestDTO.roleId = 1;
     this._authService.requestLogin(authRequestDTO).subscribe({
       next: (res) => {
         this.loading = false;

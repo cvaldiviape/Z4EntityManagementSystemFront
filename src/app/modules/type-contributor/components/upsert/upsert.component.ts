@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TypeDocumentRequestDTO } from 'src/app/models/request/type-document-request-dto';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
-import { TypeDocumentService } from '../../services/type-document.service';
+import { TypeContributorService } from '../../services/type-contributor.service';
 
 @Component({
   selector: 'app-upsert',
@@ -21,16 +21,14 @@ export class UpsertComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _router: Router,
     private _snackBarService: SnackBarService,
-    private _typeDocumentService: TypeDocumentService,
+    private _typeContributorService: TypeContributorService,
   ) { 
-    this.title = 'Nuevo tipo de documento';
+    this.title = 'Nuevo tipo de contribuyente';
     this.id = 0;
     this.loading = false;
     this.textBtnSubmit = 'Registrar';
     this.formReactive = this._formBuilder.group({
-      code	      : [null, [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ0-9]+$/)]],
-      name	      : [null, [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ]+(\s?[a-zA-ZÀ-ÿ]+?)+$/)]],
-      description : [null, [Validators.pattern(/^[a-zA-ZÀ-ÿ0-9¿?,.\"\'%!¡:\-\#$\(\)]+(\s?[a-zA-ZÀ-ÿ0-9¿?,.\"\'%!¡:\-\#$\(\)])+$/)]],
+      name: [null, [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ]+(\s?[a-zA-ZÀ-ÿ]+?)+$/)]],
     });
   }
 
@@ -40,7 +38,7 @@ export class UpsertComponent implements OnInit {
 
   verifyId(id: number): void{
     if(!(id===0 || id===null)){
-      this.title = 'Editar tipo de documento';
+      this.title = 'Editar tipo de contribuyente';
       this.textBtnSubmit = 'Actualizar';
       this.getById(id);
     }
@@ -49,10 +47,10 @@ export class UpsertComponent implements OnInit {
   onSubmit(typeDocumentRequestDTO: TypeDocumentRequestDTO): void {
     this.loading = true;
     if(this.id===0 || this.id===null){
-      this._typeDocumentService.requestCeate(typeDocumentRequestDTO).subscribe({
+      this._typeContributorService.requestCeate(typeDocumentRequestDTO).subscribe({
         next: (res) => {
           this.loading = false;
-          this._router.navigateByUrl('/admin/type-document/list');
+          this._router.navigateByUrl('/admin/type-contributor/list');
           this._snackBarService.showInfo(res.message, 'top right', 5000);
         },
         error: (err) => {
@@ -60,10 +58,10 @@ export class UpsertComponent implements OnInit {
         },
       });
     }else{
-      this._typeDocumentService.requestUpdate(typeDocumentRequestDTO, this.id).subscribe({
+      this._typeContributorService.requestUpdate(typeDocumentRequestDTO, this.id).subscribe({
         next: (res) => {
           this.loading = false;
-          this._router.navigateByUrl('/admin/type-document/list');
+          this._router.navigateByUrl('/admin/type-contributor/list');
           this._snackBarService.showInfo(res.message, 'top right', 5000);
         },
         error: (err) => {
@@ -74,14 +72,12 @@ export class UpsertComponent implements OnInit {
   }
   
   getById(id: number): void {
-    this._typeDocumentService.requestGetById(id).subscribe({
+    this._typeContributorService.requestGetById(id).subscribe({
       next: (res) => {
-        this.formReactive.controls['code'].setValue(res.data.code);
         this.formReactive.controls['name'].setValue(res.data.name);
-        this.formReactive.controls['description'].setValue(res.data.description || '');
       },
       error: (err) => {
-        this._router.navigateByUrl('/admin/type-document/list');
+        this._router.navigateByUrl('/admin/type-contributor/list');
         if(err?.error?.message){
           this._snackBarService.showInfo(err.error.message, 'top right', 5000);
         }
@@ -90,7 +86,7 @@ export class UpsertComponent implements OnInit {
 	}
 
   goBack(): void {
-    this._router.navigateByUrl('/admin/type-document/list');
+    this._router.navigateByUrl('/admin/type-contributor/list');
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-type-contributor-edit',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./type-contributor-edit.component.css']
 })
 export class TypeContributorEditComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  public id!: number;
+  
+  constructor(
+    private _route: ActivatedRoute,
+  ) { 
+    this._route.params.subscribe((params) => {
+			this.id = +params["id"];
+		});
   }
 
+  ngOnInit(): void {}
 }

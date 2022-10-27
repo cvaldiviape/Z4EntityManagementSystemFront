@@ -14,7 +14,7 @@ const routes: Routes = [
     component: TypeContributorCreateComponent
   },
   {
-    path: 'edit',
+    path: 'edit/:id',
     component: TypeContributorEditComponent
   },
   {
