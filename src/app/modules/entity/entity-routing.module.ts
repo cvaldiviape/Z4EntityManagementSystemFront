@@ -14,7 +14,7 @@ const routes: Routes = [
     component: EntityCreateComponent
   },
   {
-    path: 'edit',
+    path: 'edit/:id',
     component: EntityEditComponent
   },
   {

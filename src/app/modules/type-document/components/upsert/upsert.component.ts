@@ -83,7 +83,7 @@ export class UpsertComponent implements OnInit {
       error: (err) => {
         this._router.navigateByUrl('/admin/type-document/list');
         if(err?.error?.message){
-          this._snackBarService.showInfo(err.error.message, 'top right', 5000);
+          this._snackBarService.showWarning(err.error.message, 'top right', 5000);
         }
       },
     });
