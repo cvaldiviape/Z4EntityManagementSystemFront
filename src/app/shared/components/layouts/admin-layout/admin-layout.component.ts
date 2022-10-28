@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener  } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JwtService } from 'src/app/security/services/jwt.service';
+import { JwtService } from '../../../../security/services/jwt.service';
 import { Item } from '../../../../models/others/item';
 
 @Component({

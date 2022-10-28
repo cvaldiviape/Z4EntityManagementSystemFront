@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { JwtService } from 'src/app/security/services/jwt.service';
+import { JwtService } from '../../../../security/services/jwt.service';
 import { AuthRequestDTO } from '../../../../models/request/auth-request-dto';
 import { AuthService } from '../../services/auth.service';
 

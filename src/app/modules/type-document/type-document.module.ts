@@ -20,7 +20,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { OthersModule } from 'src/app/shared/components/others/others.module';
+import { OthersModule } from '../../shared/components/others/others.module';
 import { UpsertComponent } from './components/upsert/upsert.component';
 
 @NgModule({

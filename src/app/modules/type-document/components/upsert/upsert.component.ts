@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TypeDocumentRequestDTO } from 'src/app/models/request/type-document-request-dto';
-import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
+import { TypeDocumentRequestDTO } from '../../../../models/request/type-document-request-dto';
+import { SnackBarService } from '../../../../shared/services/snack-bar.service';
 import { TypeDocumentService } from '../../services/type-document.service';
 
 @Component({

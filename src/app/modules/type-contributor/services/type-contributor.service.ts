@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MainResponseDTO } from '../../../models/response/main-response-dto';
 import { PageResponseDTO } from '../../../models/response/page-response-dto';
-import { TypeContributorResponseDTO } from 'src/app/models/response/type-contributor-response-dto';
+import { TypeContributorResponseDTO } from '../../../models/response/type-contributor-response-dto';
 import { PathTypeContributor } from '../static/path-type-document';
-import { TypeContributorRequestDTO } from 'src/app/models/request/type-contributitor-request-dto';
+import { TypeContributorRequestDTO } from '../../../models/request/type-contributitor-request-dto';
 
 @Injectable({
   providedIn: 'root'

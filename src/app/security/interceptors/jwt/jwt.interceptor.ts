@@ -6,9 +6,7 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { TokenResponseDTO } from '../../../models/response/token-response-dto';
 import { PathAuthentication } from '../../../modules/authentication/static/path-authentication';
-import { PathContact } from 'src/app/modules/contact/static/path-contact';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {

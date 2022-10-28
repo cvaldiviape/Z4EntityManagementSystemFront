@@ -9,7 +9,7 @@ import {
 import { catchError, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { SnackBarService } from '../../../shared/services/snack-bar.service';
-import { MessagesBackend } from 'src/app/constants/messages-backend';
+import { MessagesBackend } from '../../../constants/messages-backend';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {

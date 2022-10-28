@@ -1,12 +1,12 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EntityRequestDTO } from 'src/app/models/request/entity-request-dto';
-import { TypeContributorResponseDTO } from 'src/app/models/response/type-contributor-response-dto';
-import { TypeDocumentResponseDTO } from 'src/app/models/response/type-document-response-dto';
-import { TypeContributorService } from 'src/app/modules/type-contributor/services/type-contributor.service';
-import { TypeDocumentService } from 'src/app/modules/type-document/services/type-document.service';
-import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
+import { EntityRequestDTO } from '../../../../models/request/entity-request-dto';
+import { TypeContributorResponseDTO } from '../../../../models/response/type-contributor-response-dto';
+import { TypeDocumentResponseDTO } from '../../../../models/response/type-document-response-dto';
+import { TypeContributorService } from '../../../../modules/type-contributor/services/type-contributor.service';
+import { TypeDocumentService } from '../../../../modules/type-document/services/type-document.service';
+import { SnackBarService } from '../../../../shared/services/snack-bar.service';
 import { EntityService } from '../../services/entity.service';
 
 @Component({
@@ -78,7 +78,6 @@ export class UpsertComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(entityRequestDTO: EntityRequestDTO): void {
-    console.log(entityRequestDTO);
     this.loading = true;
     if(this.id===0 || this.id===null){
       this.create(entityRequestDTO);
@@ -116,8 +115,6 @@ export class UpsertComponent implements OnInit, OnDestroy {
   getById(id: number): void {
     this._entityService.requestGetById(id).subscribe({
       next: (res) => {
-        console.log(res);
-
         this.formReactive.controls['nroDocument'].setValue(res.data.nroDocument);
         this.formReactive.controls['companyName'].setValue(res.data.companyName);
         this.formReactive.controls['commercialName'].setValue(res.data.commercialName);

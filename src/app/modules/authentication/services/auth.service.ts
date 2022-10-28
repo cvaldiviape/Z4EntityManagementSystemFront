@@ -6,7 +6,7 @@ import { AuthResponseDTO } from '../../../models/response/auth-response-dto';
 import { UserRequestDTO } from '../../../models/request/user-request-dto';
 import { AuthRequestDTO } from '../../../models/request/auth-request-dto';
 import { UserResponseDTO } from '../../../models/response/user-response-dto';
-import { MainResponseDTO } from 'src/app/models/response/main-response-dto';
+import { MainResponseDTO } from '../../../models/response/main-response-dto';
 
 @Injectable({
   providedIn: 'root'

@@ -36,7 +36,7 @@
        <!-- Colum 4 -->
        <ng-container matColumnDef="description">
         <th *matHeaderCellDef [ngClass]="['column','header-description']">Descripcíon</th>
-        <td *matCellDef="let element" [ngClass]="['column','content-description']">{{element.description}}</td>
+        <td *matCellDef="let element" [ngClass]="['column','content-description']">{{element.description || '---------------'}}</td>
       </ng-container>
       <!-- Star Column -->
       <ng-container matColumnDef="actions" stickyEnd>

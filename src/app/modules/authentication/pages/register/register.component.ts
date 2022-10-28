@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserRequestDTO } from 'src/app/models/request/user-request-dto';
-import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
+import { UserRequestDTO } from '../../../../models/request/user-request-dto';
+import { SnackBarService } from '../../../../shared/services/snack-bar.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
+import { SnackBarService } from '../../../../shared/services/snack-bar.service';
 import { TypeDocumentResponseDTO } from '../../../../models/response/type-document-response-dto';
 import { DialogService } from '../../../../shared/components/dialogs/services/dialog.service';
 import { TypeDocumentService } from '../../services/type-document.service';
