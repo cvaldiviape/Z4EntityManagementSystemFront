@@ -8,6 +8,7 @@ import { TypeContributorService } from '../../../../modules/type-contributor/ser
 import { TypeDocumentService } from '../../../../modules/type-document/services/type-document.service';
 import { SnackBarService } from '../../../../shared/services/snack-bar.service';
 import { EntityService } from '../../services/entity.service';
+import * as entityActions from "../../../../@core/store/actions/entity.action";
 
 @Component({
   selector: 'app-upsert',
@@ -36,13 +37,13 @@ export class UpsertComponent implements OnInit, OnDestroy {
     this.loading = false;
     this.textBtnSubmit = 'Registrar';
     this.formReactive = this._formBuilder.group({
-      nroDocument	      : [null, [Validators.required, Validators.pattern(/^[0-9]{8}$/)]],
-      companyName	      : [null, [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ]+(\s?[a-zA-ZÀ-ÿ]+?)+$/)]],
-      commercialName    : [null, [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ]+(\s?[a-zA-ZÀ-ÿ]+?)+$/)]],
-      address           : [null, [Validators.pattern(/^[a-zA-ZÀ-ÿ0-9,.\-\#\(\)°\/]+\s?(\s?[a-zA-ZÀ-ÿ0-9¿?,.\-\#\(\)°\/])+$/)]],
-      phone             : [null, [Validators.required, Validators.pattern(/^[0-9]{7,9}$/)]],
-      typeDocumentId    : [null, [Validators.required]],
-      typeContributorId : [null, [Validators.required]],
+      nroDocument	      : [, [Validators.required, Validators.pattern(/^[0-9]{8}$/)]],
+      companyName	      : [, [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ]+(\s?[a-zA-ZÀ-ÿ]+?)+$/)]],
+      commercialName    : [, [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ]+(\s?[a-zA-ZÀ-ÿ]+?)+$/)]],
+      address           : [, [Validators.pattern(/^[a-zA-ZÀ-ÿ0-9,.\-\#\(\)°\/]+\s?(\s?[a-zA-ZÀ-ÿ0-9¿?,.\-\#\(\)°\/])+$/)]],
+      phone             : [, [Validators.required, Validators.pattern(/^[0-9]{7,9}$/)]],
+      typeDocumentId    : [, [Validators.required]],
+      typeContributorId : [, [Validators.required]],
     });
   }
 
@@ -92,9 +93,19 @@ export class UpsertComponent implements OnInit, OnDestroy {
         this.loading = false;
         this._router.navigateByUrl('/admin/entity/list');
         this._snackBarService.showInfo(res.message, 'top right', 5000);
+        entityActions.requestCreateEntity({
+          payload: {
+            entity: res.data
+          }
+        });
       },
       error: (err) => {
         this.loading = false;
+        entityActions.requestError({
+          payload: {
+            error: err
+          }
+        });
       },
     });
   }

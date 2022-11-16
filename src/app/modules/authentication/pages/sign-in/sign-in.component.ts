@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { JwtService } from '../../../../security/services/jwt.service';
 import { AuthRequestDTO } from '../../../../models/request/auth-request-dto';
 import { AuthService } from '../../services/auth.service';
+import * as userActions from "../../../../@core/store/actions/user.action";
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/@core/store';
 
 @Component({
   selector: 'app-sign-in',
@@ -23,6 +26,7 @@ export class SignInComponent implements OnInit {
     private _router: Router,
     private _authService: AuthService,
     private _jwtService: JwtService,
+    private _store: Store<AppState>
   ) { 
     this.title = 'Sistema de Gestión de Entidades';
     this.subtitle = 'Bienvenido:';
@@ -43,6 +47,11 @@ export class SignInComponent implements OnInit {
         this.loading = false;
         this._jwtService.authJWT(res.data);
         this._router.navigateByUrl('/admin');
+        this._store.dispatch( userActions.requestAuthUser({
+          payload: {
+            auth: res.data
+          }
+        }));
       },
       error: (err) => {
         this.loading = false;

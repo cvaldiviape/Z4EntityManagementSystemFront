@@ -4,7 +4,7 @@
     [isMobileSize]="isMobileSize"
     [openSidebar]="openSidebar"
     [appName]="appName"
-    [username]="username"
+    [username]="username$ | async"
     [items]="items">
   </app-sidebar>
   <!-- ------------------------------------------------------------ CONTENT ------------------------------------------------------------ -->

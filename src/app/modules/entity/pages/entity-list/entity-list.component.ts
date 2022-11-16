@@ -2,10 +2,15 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+
 import { EntityResponseDTO } from '../../../../models/response/entity-response-dto';
 import { DialogService } from '../../../../shared/components/dialogs/services/dialog.service';
 import { SnackBarService } from '../../../../shared/services/snack-bar.service';
 import { EntityService } from '../../services/entity.service';
+
+import { selectorAllEntities } from '../../../../@core/store/selectors/entity.selector';
+import { Store } from "@ngrx/store";
+import { AppState } from "../../../../@core/store";
 
 @Component({
   selector: 'app-entity-list',
@@ -22,14 +27,23 @@ export class EntityListComponent implements OnInit {
     private _router: Router,
     private _snackBarService: SnackBarService,
     private _entityService: EntityService,
-    private _dialogService: DialogService
+    private _dialogService: DialogService,
+    private _store: Store<AppState>
   ) {
     this.title = "Entidades";
     this.displayedColumns = ['id','companyName','nroDocument','commercialName','actions'];
-    this.getAllItems();
+    selectorAllEntities
+    this.getAllItemsRedux();
   }
 
   ngOnInit(): void {}
+
+  getAllItemsRedux(): void{
+    this._store.select(selectorAllEntities).subscribe(x => {
+      // debugger
+      this.dataSource = new MatTableDataSource<EntityResponseDTO>(x)
+    });
+  }
 
   getAllItems(): void {
     this._entityService.requestGetAll().subscribe({

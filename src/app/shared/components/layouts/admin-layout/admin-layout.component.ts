@@ -3,6 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { JwtService } from '../../../../security/services/jwt.service';
 import { Item } from '../../../../models/others/item';
 
+import { selectAuthUser, selectorUserAuth } from '../../../../@core/store/selectors/user.selector';
+import { Store } from "@ngrx/store";
+import { AppState } from "../../../../@core/store";
+import { filter, map, Observable, tap } from 'rxjs';
+
 @Component({
   selector: 'app-admin-layout',
   templateUrl: './admin-layout.component.html',
@@ -11,7 +16,7 @@ import { Item } from '../../../../models/others/item';
 export class AdminLayoutComponent implements OnInit {
   public openSidebar: boolean
   public openSubMenu: boolean;
-  public username: string;
+  public username$: Observable<string> = this._store.select(selectAuthUser).pipe(map(x => x || "Usuario no autenticado"));
   public appName: string;
   public items: Item[];
   public isMobileSize: boolean;
@@ -19,12 +24,12 @@ export class AdminLayoutComponent implements OnInit {
   constructor(
     private _activedRoute: ActivatedRoute,
     private _router: Router,
-    private _jwtService: JwtService
+    private _jwtService: JwtService,
+    private _store: Store<AppState>
   ) {
     this.openSidebar = false;
     this.isMobileSize = true;
     this.openSubMenu = false;
-    this.username = 'Usuario anónimo';
     this.appName = 'Company';
     this.items = [
       {
@@ -46,10 +51,14 @@ export class AdminLayoutComponent implements OnInit {
         path: 'type-document',
       },
     ];
+    
   }
 
   ngOnInit(): void {
-    this.username = this._jwtService.getUsername().toUpperCase();
+    // this.username = this._jwtService.getUsername().toUpperCase();
+
+
+
     this.questionSizeDisplay();
   }
 
