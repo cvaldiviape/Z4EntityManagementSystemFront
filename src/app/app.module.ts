@@ -9,12 +9,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { Store, StoreModule } from "@ngrx/store";
 import { reducers, metaReducers, AppState } from './@core/store';
-//import { reducers, metaReducers } from "@core/store";
+//import { reducers, metaReducers, AppState } from "@core/store";
 
-const checkAuth = (store: Store<AppState>) => {
-  //return store.select(isAuthenticated)
-  return true
-}
+// const checkAuth = (store: Store<AppState>) => {
+//   //return store.select(isAuthenticated)
+//   return true
+// }
 
 @NgModule({
   declarations: [
@@ -28,12 +28,13 @@ const checkAuth = (store: Store<AppState>) => {
     HttpClientModule,
     StoreModule.forRoot(reducers, { metaReducers }),
   ],
-  providers: [httpInterceptorProviders, DatePipe, {
-    provide: APP_INITIALIZER,
-    deps: [Store],
-    useFactory: checkAuth,
-    multi: true
-  }],
+  // providers: [httpInterceptorProviders, DatePipe, {
+  //   provide: APP_INITIALIZER,
+  //   deps: [Store],
+  //   useFactory: checkAuth,
+  //   multi: true
+  // }],
+  providers: [httpInterceptorProviders, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
